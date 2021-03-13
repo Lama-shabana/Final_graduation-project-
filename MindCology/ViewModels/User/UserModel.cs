@@ -18,7 +18,7 @@ namespace MindCology.ViewModels.User
         public string PhoneNumber { get; set; }
         
         [Required]
-        public int Password { get; set; }
+        public string Password { get; set; }
 
         [Required]
         public string Username { get; set; }
