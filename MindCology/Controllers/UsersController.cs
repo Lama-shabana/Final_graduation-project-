@@ -24,16 +24,45 @@ namespace MindCology.Controllers
         }
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var entities = _mindCologyContext.User.ToList();
+            var ViewModels = new List<UserViewModel>();
+
+            foreach (var entity in entities)
+            {
+                ViewModels.Add(new UserViewModel()
+                {
+                    Id = entity.Id,
+                    FirstName = entity.FirstName,
+                    LastName = entity.LastName,
+                    PhoneNumber = entity.PhoneNumber,
+                    Username = entity.Username
+                });
+            }
+
+            return Ok(ViewModels);
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult Get(int id)
         {
-            return "value";
+
+            var entity = _mindCologyContext.User.FirstOrDefault(x=>x.Id==id);
+            if (entity == null) {
+                return NotFound();
+            }
+
+            var ViewModel = new UserViewModel()
+            {
+                Id = entity.Id,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                PhoneNumber = entity.PhoneNumber,
+                Username = entity.Username
+            };
+            return Ok(ViewModel);
         }
 
         // POST api/<UsersController>
@@ -52,24 +81,57 @@ namespace MindCology.Controllers
             _mindCologyContext.SaveChanges();
             var ViewModel = new UserViewModel() { 
                 Id=entity.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                PhoneNumber = user.PhoneNumber,
-                Username = user.Username
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                PhoneNumber = entity.PhoneNumber,
+                Username = entity.Username
             };
             return ViewModel;
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] UserModel user)
         {
+            var entity = _mindCologyContext.User.FirstOrDefault(x => x.Id == id);
+
+            if (entity==null) {
+                return NotFound();
+            }
+
+            entity.FirstName = user.FirstName;
+            entity.LastName = user.LastName;
+            entity.Password = user.Password;
+            entity.PhoneNumber = user.PhoneNumber;
+            entity.Username = user.Username;
+            
+
+            _mindCologyContext.Update<UserEntity>(entity);
+            _mindCologyContext.SaveChanges();
+            var ViewModel = new UserViewModel()
+            {
+                Id = entity.Id,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                PhoneNumber = entity.PhoneNumber,
+                Username = entity.Username
+            };
+            return Ok(ViewModel);
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            var entity = _mindCologyContext.User.FirstOrDefault(x => x.Id == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            _mindCologyContext.User.Remove(entity);
+            _mindCologyContext.SaveChanges();
+            return NoContent();
+
         }
     }
 }
