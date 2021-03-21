@@ -22,6 +22,6 @@ namespace MindCology.ViewModels.User
 
         [Required]
         public string Username { get; set; }
-        //test
+       
     }
 }
