@@ -6,7 +6,7 @@ using WebApi.Services;
 namespace MindCology.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         private IUserService _userService;
