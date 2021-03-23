@@ -1,27 +1,25 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MindCology.DAL;
 using MindCology.ViewModels.Login;
-
+using WebApi.Services;
 
 namespace MindCology.Controllers
 {
     [ApiController]
-    [Route("controller/login")]
+    [Route("[controller]")]
     public class LoginController : ControllerBase
     {
-        private MindCologyContext _mindCologyContext;
+        private IUserService _userService;
 
-        public LoginController(MindCologyContext mindCologyContext)
+        public LoginController(IUserService userService)
         {
-            _mindCologyContext = mindCologyContext;
-
+            _userService = userService;
         }
 
         [HttpPost("authenticate")]
         public IActionResult Authenticate(LoginModel model)
         {
-            object response = _mindCologyContext.Authenticate(model);
+            var response = _userService.Authenticate(model);
 
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -33,7 +31,7 @@ namespace MindCology.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users = _mindCologyContext.GetAll();
+            var users = _userService.GetAll();
             return Ok(users);
         }
     }

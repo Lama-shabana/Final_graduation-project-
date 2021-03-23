@@ -9,14 +9,8 @@ namespace MindCology.ViewModels.Login
 {
     public class LoginModel
     {
-        private LoginEntity user;
-        private string token;
+       
 
-        public LoginModel(LoginEntity user, string token)
-        {
-            this.user = user;
-            this.token = token;
-        }
 
         [Key]
        

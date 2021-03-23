@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using MindCology;
-using MindCology.DAL.Entities;
-using MindCology.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,16 +7,22 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
+
+
+using MindCology.ViewModels.Login;
+using MindCology.DAL.Entities;
+using WebApi.Helpers;
+
 namespace WebApi.Services
 {
     public interface IUserService
     {
         LoginViewModel Authenticate(LoginModel model);
-        IEnumerable<LoginModel> GetAll();
-        LoginModel GetById(int id);
+        IEnumerable<LoginEntity> GetAll();
+        LoginEntity GetById(int id);
     }
 
-    public class UserService: IUserService
+    public class UserService : IUserService
     {
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
         private List<LoginEntity> _users = new List<LoginEntity>
@@ -29,9 +32,12 @@ namespace WebApi.Services
 
         private readonly AppSettings _appSettings;
 
-        
+        public UserService(IOptions<AppSettings> appSettings)
+        {
+            _appSettings = appSettings.Value;
+        }
 
-        public LoginModel Authenticate(LoginModel model)
+        public LoginViewModel Authenticate(LoginModel model)
         {
             var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
 
@@ -41,12 +47,7 @@ namespace WebApi.Services
             // authentication successful so generate jwt token
             var token = generateJwtToken(user);
 
-            return new LoginModel(user, token);
-        }
-
-        private object generateJwtToken(LoginModel user)
-        {
-            throw new NotImplementedException();
+            return new LoginViewModel(user, token);
         }
 
         public IEnumerable<LoginEntity> GetAll()
@@ -74,21 +75,6 @@ namespace WebApi.Services
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
-        }
-
-        LoginViewModel IUserService.Authenticate(LoginModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<LoginModel> IUserService.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        LoginModel IUserService.GetById(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
