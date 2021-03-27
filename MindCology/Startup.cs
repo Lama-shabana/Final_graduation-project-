@@ -33,6 +33,11 @@ namespace MindCology
 
             services.AddDbContext<MindCologyContext>(item => item.UseSqlServer(Configuration.GetConnectionString("MindcologyConnection")));
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,9 +58,12 @@ namespace MindCology
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            app.UseCors("AllowOrigin");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
 
             app.UseAuthorization();
 
