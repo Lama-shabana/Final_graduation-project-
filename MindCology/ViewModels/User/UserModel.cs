@@ -8,7 +8,7 @@ namespace MindCology.ViewModels.User
 {
     public class UserModel
     {
-        [Required, MinLength (5), MaxLength(20)]
+        [Required, MinLength (2), MaxLength(20)]
         public string FirstName { get; set; }
         
         [Required]
@@ -16,12 +16,31 @@ namespace MindCology.ViewModels.User
         
         [Required]
         public string PhoneNumber { get; set; }
-        
+
+
         [Required]
-        public string Password { get; set; }
+        public string Email { get; set; }
+
+        [Required]
+        public string Gender { get; set; }
+
+        [Required]
+        public int Age { get; set; }
 
         [Required]
         public string Username { get; set; }
-       
+
+        [Required]
+        public string Password { get; set; }
+
+
+
+      
+
+
+
+
+
+
     }
 }
