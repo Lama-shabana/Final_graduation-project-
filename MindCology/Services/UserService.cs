@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MindCology.DAL;
 using MindCology.DAL.Entities;
 using MindCology.Helpers;
 using MindCology.ViewModels.Login;
@@ -23,22 +24,24 @@ namespace MindCology.Services
 
     public class UserService : IUserService
     {
-        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<UserEntity> _users = new List<UserEntity>
-        {
-            new UserEntity { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" }
-        };
+
+
+
+        private readonly MindCologyContext _mindCologyContext;
+    
 
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings)
+        public UserService(IOptions<AppSettings> appSettings, MindCologyContext mindCologyContext)
         {
             _appSettings = appSettings.Value;
+            _mindCologyContext = mindCologyContext;
+
         }
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+            var user = _mindCologyContext.User.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
 
             // return null if user not found
             if (user == null) return null;
@@ -51,12 +54,12 @@ namespace MindCology.Services
 
         public IEnumerable<UserEntity> GetAll()
         {
-            return _users;
+            return _mindCologyContext.User;
         }
 
         public UserEntity GetById(int id)
         {
-            return _users.FirstOrDefault(x => x.Id == id);
+            return _mindCologyContext.User.FirstOrDefault(x => x.Id == id);
         }
 
         // helper methods
