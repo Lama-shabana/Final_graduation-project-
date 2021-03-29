@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MindCology.Helpers;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApi.Services;
+using MindCology.Services;
 
-namespace WebApi.Helpers
+namespace MindCology.Helpers
 {
     public class JwtMiddleware
     {

@@ -11,14 +11,15 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MindCology.DAL;
-
+using MindCology.Helpers;
+using MindCology.Services;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApi.Services;
+
 
 namespace MindCology
 {
@@ -126,8 +127,5 @@ namespace MindCology
     }
 
 
-    internal class AppSettings
-    {
-        public string Secret { get; set; }
-    }
+   
 }

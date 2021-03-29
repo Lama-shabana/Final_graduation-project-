@@ -1,4 +1,4 @@
-namespace WebApi.Helpers
+namespace MindCology.Helpers
 {
     public class AppSettings
     {

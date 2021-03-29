@@ -15,7 +15,7 @@ namespace MindCology.DAL
         {
         }
         public DbSet<UserEntity> User { get; set; }
-        public DbSet<LoginEntity> Login { get; set; }
+        //public DbSet<LoginEntity> Login { get; set; }
 
         internal object Authenticate(LoginModel model)
         {

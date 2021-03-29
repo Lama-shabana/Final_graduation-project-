@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MindCology.ViewModels.Login;
-using WebApi.Services;
+
+using MindCology.Services;
 
 namespace MindCology.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class LoginController : ControllerBase
     {
         private IUserService _userService;
@@ -17,7 +17,7 @@ namespace MindCology.Controllers
         }
 
         [HttpPost("authenticate")]
-        public IActionResult Authenticate(LoginModel model)
+        public IActionResult Authenticate(AuthenticateRequest model)
         {
             var response = _userService.Authenticate(model);
 

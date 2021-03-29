@@ -10,7 +10,7 @@ namespace MindCology.ViewModels.Login
 
 
     {
-        public LoginViewModel(LoginEntity user, string token)
+        public LoginViewModel(UserEntity user, string token)
         {
            
             Username = user.Username;

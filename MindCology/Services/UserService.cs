@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MindCology.DAL.Entities;
+using MindCology.Helpers;
+using MindCology.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,25 +12,21 @@ using System.Text;
 
 
 
-using MindCology.ViewModels.Login;
-using MindCology.DAL.Entities;
-using WebApi.Helpers;
-
-namespace WebApi.Services
+namespace MindCology.Services
 {
     public interface IUserService
     {
-        LoginViewModel Authenticate(LoginModel model);
-        IEnumerable<LoginEntity> GetAll();
-        LoginEntity GetById(int id);
+        AuthenticateResponse Authenticate(AuthenticateRequest model);
+        IEnumerable<UserEntity> GetAll();
+        UserEntity GetById(int id);
     }
 
     public class UserService : IUserService
     {
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<LoginEntity> _users = new List<LoginEntity>
+        private List<UserEntity> _users = new List<UserEntity>
         {
-            new LoginEntity { Id = 1, Username = "lama-shabana", Password = "test123456" }
+            new UserEntity { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" }
         };
 
         private readonly AppSettings _appSettings;
@@ -37,7 +36,7 @@ namespace WebApi.Services
             _appSettings = appSettings.Value;
         }
 
-        public LoginViewModel Authenticate(LoginModel model)
+        public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
             var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
 
@@ -47,22 +46,22 @@ namespace WebApi.Services
             // authentication successful so generate jwt token
             var token = generateJwtToken(user);
 
-            return new LoginViewModel(user, token);
+            return new AuthenticateResponse(user, token);
         }
 
-        public IEnumerable<LoginEntity> GetAll()
+        public IEnumerable<UserEntity> GetAll()
         {
             return _users;
         }
 
-        public LoginEntity GetById(int id)
+        public UserEntity GetById(int id)
         {
             return _users.FirstOrDefault(x => x.Id == id);
         }
 
         // helper methods
 
-        private string generateJwtToken(LoginEntity user)
+        private string generateJwtToken(UserEntity user)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
