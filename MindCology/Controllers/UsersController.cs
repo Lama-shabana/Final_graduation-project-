@@ -37,7 +37,10 @@ namespace MindCology.Controllers
                     FirstName = entity.FirstName,
                     LastName = entity.LastName,
                     PhoneNumber = entity.PhoneNumber,
-                    Username = entity.Username
+                    Username = entity.Username,
+                    Email=entity.Email,
+                    Age=entity.Age,
+                    Gender=entity.Gender
                 });
             }
 
@@ -60,7 +63,10 @@ namespace MindCology.Controllers
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 PhoneNumber = entity.PhoneNumber,
-                Username = entity.Username
+                Username = entity.Username,
+                Email = entity.Email,
+                Age = entity.Age,
+                Gender = entity.Gender
             };
             return Ok(ViewModel);
         }
@@ -74,7 +80,10 @@ namespace MindCology.Controllers
                 LastName=user.LastName,
                 Password=user.Password,
                 PhoneNumber=user.PhoneNumber,
-                Username=user.Username
+                Username=user.Username,
+                 Email = user.Email,
+                Age = user.Age,
+                Gender = user.Gender
             };
 
             _mindCologyContext.Add<UserEntity>(entity);
@@ -84,7 +93,11 @@ namespace MindCology.Controllers
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 PhoneNumber = entity.PhoneNumber,
-                Username = entity.Username
+                Username = entity.Username,
+                Email = entity.Email,
+                Age = entity.Age,
+                Gender = entity.Gender
+
             };
             return ViewModel;
         }
@@ -104,7 +117,11 @@ namespace MindCology.Controllers
             entity.Password = user.Password;
             entity.PhoneNumber = user.PhoneNumber;
             entity.Username = user.Username;
-            
+            entity.Email = user.Email;
+            entity.Age = user.Age;
+            entity.Gender = user.Gender;
+
+
 
             _mindCologyContext.Update<UserEntity>(entity);
             _mindCologyContext.SaveChanges();
@@ -114,7 +131,12 @@ namespace MindCology.Controllers
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 PhoneNumber = entity.PhoneNumber,
-                Username = entity.Username
+                Username = entity.Username,
+                Email = entity.Email,
+                Age = entity.Age,
+                Gender = entity.Gender
+
+
             };
             return Ok(ViewModel);
         }
