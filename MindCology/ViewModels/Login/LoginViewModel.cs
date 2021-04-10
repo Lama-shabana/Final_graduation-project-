@@ -24,6 +24,9 @@ namespace MindCology.ViewModels.Login
         public string Password { get; set; }
       
        public string Token { get; }
+
+
+
       
         
     }

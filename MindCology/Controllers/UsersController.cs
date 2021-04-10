@@ -40,7 +40,9 @@ namespace MindCology.Controllers
                     Username = entity.Username,
                     Email=entity.Email,
                     Age=entity.Age,
-                    Gender=entity.Gender
+                    Gender=entity.Gender,
+                    FilledMedicalForm=entity.FilledMedicalForm,
+                    UserType=entity.UserType,
                 });
             }
 
@@ -66,7 +68,9 @@ namespace MindCology.Controllers
                 Username = entity.Username,
                 Email = entity.Email,
                 Age = entity.Age,
-                Gender = entity.Gender
+                Gender = entity.Gender,
+                FilledMedicalForm = entity.FilledMedicalForm,
+                UserType = entity.UserType,
             };
             return Ok(ViewModel);
         }
@@ -83,7 +87,9 @@ namespace MindCology.Controllers
                 Username=user.Username,
                  Email = user.Email,
                 Age = user.Age,
-                Gender = user.Gender
+                Gender = user.Gender,
+                FilledMedicalForm = user.FilledMedicalForm,
+                UserType = user.UserType,
             };
 
             _mindCologyContext.Add<UserEntity>(entity);
@@ -96,7 +102,9 @@ namespace MindCology.Controllers
                 Username = entity.Username,
                 Email = entity.Email,
                 Age = entity.Age,
-                Gender = entity.Gender
+                Gender = entity.Gender,
+                FilledMedicalForm = entity.FilledMedicalForm,
+                UserType = entity.UserType,
 
             };
             return ViewModel;
@@ -120,6 +128,8 @@ namespace MindCology.Controllers
             entity.Email = user.Email;
             entity.Age = user.Age;
             entity.Gender = user.Gender;
+            entity.FilledMedicalForm = user.FilledMedicalForm;
+            entity.UserType = user.UserType;
 
 
 
@@ -134,7 +144,9 @@ namespace MindCology.Controllers
                 Username = entity.Username,
                 Email = entity.Email,
                 Age = entity.Age,
-                Gender = entity.Gender
+                Gender = entity.Gender,
+                FilledMedicalForm = entity.FilledMedicalForm,
+                UserType = entity.UserType,
 
 
             };

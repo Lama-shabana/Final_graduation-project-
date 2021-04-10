@@ -13,6 +13,12 @@ namespace MindCology.ViewModels.Login
         public string Username { get; set; }
         public string Token { get; set; }
 
+        public string FilledMedicalForm { get; set; }
+        public string UserType { get; set; }
+
+
+
+
 
         public AuthenticateResponse(UserEntity user, string token)
         {
@@ -20,6 +26,8 @@ namespace MindCology.ViewModels.Login
             FirstName = user.FirstName;
             LastName = user.LastName;
             Username = user.Username;
+            FilledMedicalForm = user.FilledMedicalForm;
+            UserType = user.UserType;
             Token = token;
         }
     }
