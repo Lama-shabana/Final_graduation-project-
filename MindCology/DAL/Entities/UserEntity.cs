@@ -30,6 +30,9 @@ namespace MindCology.DAL.Entities
         public int Age { get; set; }
 
 
+        public MedicalHistoryEntity MedicalHistory { get; set; }
+
+
 
     }
 }

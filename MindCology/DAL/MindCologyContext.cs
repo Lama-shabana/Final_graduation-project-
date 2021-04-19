@@ -15,18 +15,15 @@ namespace MindCology.DAL
         {
         }
         public DbSet<UserEntity> User { get; set; }
-        //public DbSet<LoginEntity> Login { get; set; }
+        public DbSet<MedicalHistoryEntity> MedicalHistory { get; set; }
 
-        internal object Authenticate(LoginModel model)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            throw new NotImplementedException();
-        }
+            modelBuilder.Entity<MedicalHistoryEntity>()
+                .HasOne(p=> p.User)
+                .WithOne(p=> p.MedicalHistory)
+                .HasForeignKey<MedicalHistoryEntity>(p => p.UserId);
 
-        internal object GetAll()
-        {
-            throw new NotImplementedException();
         }
-
-       
     }
 }

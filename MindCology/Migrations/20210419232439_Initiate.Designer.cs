@@ -9,8 +9,8 @@ using MindCology.DAL;
 namespace MindCology.Migrations
 {
     [DbContext(typeof(MindCologyContext))]
-    [Migration("20210328001910_updateRegistration")]
-    partial class updateRegistration
+    [Migration("20210419232439_Initiate")]
+    partial class Initiate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,22 +20,55 @@ namespace MindCology.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MindCology.DAL.Entities.LoginEntity", b =>
+            modelBuilder.Entity("MindCology.DAL.Entities.MedicalHistoryEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Password")
+                    b.Property<bool>("MentalOrPhysicalDisorder")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MentalOrPhysicalDisorderDetails")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("ProvidedWithMentalHealthServices")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeekingHelpFor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SessionsLanguage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TherapistGender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ThinkAboutHarmingYourself")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ThinkAboutHarmingYourselfDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TraumaticExperience")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("UnderMedications")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UnderMedicationsDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Login");
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("MedicalHistory");
                 });
 
             modelBuilder.Entity("MindCology.DAL.Entities.UserEntity", b =>
@@ -49,6 +82,9 @@ namespace MindCology.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilledMedicalForm")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -66,12 +102,24 @@ namespace MindCology.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("MindCology.DAL.Entities.MedicalHistoryEntity", b =>
+                {
+                    b.HasOne("MindCology.DAL.Entities.UserEntity", "User")
+                        .WithOne("MedicalHistory")
+                        .HasForeignKey("MindCology.DAL.Entities.MedicalHistoryEntity", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
