@@ -22,9 +22,9 @@ namespace MindCology.DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MedicalHistoryEntity>()
-                .HasOne(p=> p.User)
+                .HasOne(p=> p.Patient)
                 .WithOne(p=> p.MedicalHistory)
-                .HasForeignKey<MedicalHistoryEntity>(p => p.UserId);
+                .HasForeignKey<MedicalHistoryEntity>(p => p.PatientId);
 
             modelBuilder.Entity<UserEntity>().ToTable("User");
             modelBuilder.Entity<PatientEntity>().ToTable("Patient");

@@ -31,9 +31,9 @@ namespace MindCology.DAL.Entities
 
         public string UnderMedicationsDetails { get; set; }
 
-        public UserEntity User { get; set; }
+        public PatientEntity Patient { get; set; }
 
-        public int UserId { get; set; }
+        public int PatientId { get; set; }
 
     }
 }

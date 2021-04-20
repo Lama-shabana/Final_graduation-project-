@@ -11,7 +11,7 @@ namespace MindCology.ViewModels.MedicalHistory
     {
 
         [Required]
-        public int UserId { get; set; }
+        public int PatientId { get; set; }
 
         [Required]
         public string ProvidedWithMentalHealthServices { get; set; }

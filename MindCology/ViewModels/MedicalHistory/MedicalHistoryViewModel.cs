@@ -9,7 +9,7 @@ namespace MindCology.ViewModels.MedicalHistory
     public class MedicalHistoryViewModel
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int PatientId { get; set; }
 
         public string ProvidedWithMentalHealthServices { get; set; }
         public string SessionsLanguage { get; set; }

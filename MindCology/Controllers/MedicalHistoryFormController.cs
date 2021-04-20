@@ -41,7 +41,7 @@ namespace MindCology.DAL.Entities
                     ThinkAboutHarmingYourselfDetails = entity.ThinkAboutHarmingYourselfDetails,
                     UnderMedications = entity.UnderMedications,
                     UnderMedicationsDetails = entity.UnderMedicationsDetails,
-                    UserId=entity.UserId
+                    PatientId=entity.PatientId
 
                 });
             }
@@ -74,7 +74,7 @@ namespace MindCology.DAL.Entities
                 ThinkAboutHarmingYourselfDetails = entity.ThinkAboutHarmingYourselfDetails,
                 UnderMedications = entity.UnderMedications,
                 UnderMedicationsDetails = entity.UnderMedicationsDetails,
-                UserId = entity.UserId
+                PatientId = entity.PatientId
 
             };
             return Ok(ViewModel);
@@ -84,7 +84,7 @@ namespace MindCology.DAL.Entities
         [HttpPost]
         public ActionResult Post([FromBody] MedicalHistoryModel user)
         {
-            var userExists = _mindCologyContext.User.Any(x => x.Id == user.UserId);
+            var userExists = _mindCologyContext.User.Any(x => x.Id == user.PatientId);
             if (!userExists) {
                 return BadRequest("User not found");
             }
@@ -101,7 +101,7 @@ namespace MindCology.DAL.Entities
                 ThinkAboutHarmingYourselfDetails = user.ThinkAboutHarmingYourselfDetails,
                 UnderMedications = user.UnderMedications,
                 UnderMedicationsDetails = user.UnderMedicationsDetails,
-                UserId = user.UserId
+                PatientId = user.PatientId
 
 
             };
@@ -122,7 +122,7 @@ namespace MindCology.DAL.Entities
                 ThinkAboutHarmingYourselfDetails = entity.ThinkAboutHarmingYourselfDetails,
                 UnderMedications = entity.UnderMedications,
                 UnderMedicationsDetails = entity.UnderMedicationsDetails,
-                UserId = entity.UserId
+                PatientId = entity.PatientId
 
 
 
@@ -135,7 +135,7 @@ namespace MindCology.DAL.Entities
         public ActionResult Put(int id, [FromBody] MedicalHistoryModel user)
         {
 
-            var userExists = _mindCologyContext.User.Any(x => x.Id == user.UserId);
+            var userExists = _mindCologyContext.User.Any(x => x.Id == user.PatientId);
             if (!userExists)
             {
                 return BadRequest("User not found");
@@ -158,7 +158,7 @@ namespace MindCology.DAL.Entities
             entity.ThinkAboutHarmingYourselfDetails = user.ThinkAboutHarmingYourselfDetails;
             entity.UnderMedications = user.UnderMedications;
             entity.UnderMedicationsDetails = user.UnderMedicationsDetails;
-            entity.UserId = user.UserId;
+            entity.PatientId = user.PatientId;
 
 
 
@@ -179,7 +179,7 @@ namespace MindCology.DAL.Entities
                 ThinkAboutHarmingYourselfDetails = entity.ThinkAboutHarmingYourselfDetails,
                 UnderMedications = entity.UnderMedications,
                 UnderMedicationsDetails = entity.UnderMedicationsDetails,
-                UserId = entity.UserId
+                PatientId = entity.PatientId
 
 
             };
