@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MindCology.DAL.Entities
 {
+    /// TESTTTTTT
+    /// 
+    ///
     public class LoginEntity
     {
         [Key]
