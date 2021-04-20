@@ -15,6 +15,8 @@ namespace MindCology.DAL
         {
         }
         public DbSet<UserEntity> User { get; set; }
+        public DbSet<PatientEntity> Patient { get; set; }
+
         public DbSet<MedicalHistoryEntity> MedicalHistory { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,6 +25,9 @@ namespace MindCology.DAL
                 .HasOne(p=> p.User)
                 .WithOne(p=> p.MedicalHistory)
                 .HasForeignKey<MedicalHistoryEntity>(p => p.UserId);
+
+            modelBuilder.Entity<UserEntity>().ToTable("User");
+            modelBuilder.Entity<PatientEntity>().ToTable("Patient");
 
         }
     }
