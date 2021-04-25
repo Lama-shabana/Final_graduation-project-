@@ -20,6 +20,8 @@ namespace MindCology.DAL
         public DbSet<MedicalHistoryEntity> MedicalHistory { get; set; }
 
         public DbSet<TherapistEntity> Therapist { get; set; }
+        public DbSet<AppointmentEntity> Appointments { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,10 +30,25 @@ namespace MindCology.DAL
                 .WithOne(p=> p.MedicalHistory)
                 .HasForeignKey<MedicalHistoryEntity>(p => p.PatientId);
 
+
+            modelBuilder.Entity<AppointmentEntity>()
+                .HasOne(p => p.Patient)
+                .WithMany(b => b.Appointments)
+                .HasForeignKey(p => p.PatientId);
+
+
+            modelBuilder.Entity<AppointmentEntity>()
+               .HasOne(p => p.Therapist)
+               .WithMany(b => b.Appointments)
+               .HasForeignKey(p => p.TherapistId);
+            //      .HasOne(p => p.Therapist)
+            //      .WithMany(p => p.Appointment)
+
+
             modelBuilder.Entity<UserEntity>().ToTable("User");
             modelBuilder.Entity<PatientEntity>().ToTable("Patient");
             modelBuilder.Entity<TherapistEntity>().ToTable("Therapist");
-
+            modelBuilder.Entity<AppointmentEntity>().ToTable("Appointment");
 
 
         }

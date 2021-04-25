@@ -10,6 +10,9 @@ namespace MindCology.DAL.Entities
         public bool FilledMedicalHistoryForm { get; set; }
         public MedicalHistoryEntity MedicalHistory { get; set; }
 
+        public List<AppointmentEntity> Appointments { get; set; }
+
+
     }
 
 }

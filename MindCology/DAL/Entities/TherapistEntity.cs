@@ -14,6 +14,10 @@ namespace MindCology.DAL.Entities
 
         public string Description { get; set; }
 
+        public List<AppointmentEntity> Appointments { get; set; }
+
+
+
 
     }
 }

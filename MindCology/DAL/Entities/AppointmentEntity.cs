@@ -3,22 +3,28 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MindCology.DAL.Entities
 {
-  
-    public class LoginEntity
+    public class AppointmentEntity
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string Username { get; set; }
+        public DateTime Date { get; set; }
 
-        [JsonIgnore]
-        public string Password { get; set; }
-      
+
+        public TherapistEntity Therapist { get; set; }
+        public int TherapistId { get; set; }
+
+        public PatientEntity Patient { get; set; }
+        public int PatientId { get; set; }
+
+
+
+
     }
 }
