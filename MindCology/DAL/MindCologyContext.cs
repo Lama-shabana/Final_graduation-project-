@@ -19,6 +19,8 @@ namespace MindCology.DAL
 
         public DbSet<MedicalHistoryEntity> MedicalHistory { get; set; }
 
+        public DbSet<TherapistEntity> Therapist { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MedicalHistoryEntity>()
@@ -28,6 +30,9 @@ namespace MindCology.DAL
 
             modelBuilder.Entity<UserEntity>().ToTable("User");
             modelBuilder.Entity<PatientEntity>().ToTable("Patient");
+            modelBuilder.Entity<TherapistEntity>().ToTable("Therapist");
+
+
 
         }
     }

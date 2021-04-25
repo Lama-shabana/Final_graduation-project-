@@ -190,12 +190,12 @@ namespace MindCology.DAL.Entities
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var entity = _mindCologyContext.User.FirstOrDefault(x => x.Id == id);
+            var entity = _mindCologyContext.MedicalHistory.FirstOrDefault(x => x.Id == id);
             if (entity == null)
             {
                 return NotFound();
             }
-            _mindCologyContext.User.Remove(entity);
+            _mindCologyContext.MedicalHistory.Remove(entity);
             _mindCologyContext.SaveChanges();
             return NoContent();
 

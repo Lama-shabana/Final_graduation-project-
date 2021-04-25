@@ -26,7 +26,6 @@ namespace MindCology.ViewModels.Login
             FirstName = user.FirstName;
             LastName = user.LastName;
             Username = user.Username;
-            FilledMedicalForm = user.FilledMedicalForm;
             UserType = user.UserType;
             Token = token;
         }

@@ -22,10 +22,7 @@ namespace MindCology.DAL.Entities
         public string Email { get; set; }
         public string Gender { get; set; }
 
-        public string FilledMedicalForm { get; set; }
-
         public string UserType { get; set; }
-
 
         public int Age { get; set; }
 

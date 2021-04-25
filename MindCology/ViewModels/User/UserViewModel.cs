@@ -17,7 +17,6 @@ namespace MindCology.ViewModels.User
         public string Gender { get; set; }
         public string Username { get; set; }
 
-        public string FilledMedicalForm { get; set; }
 
         public string UserType { get; set; }
 

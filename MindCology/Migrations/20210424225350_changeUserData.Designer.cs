@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MindCology.DAL;
 
 namespace MindCology.Migrations
 {
     [DbContext(typeof(MindCologyContext))]
-    partial class MindCologyContextModelSnapshot : ModelSnapshot
+    [Migration("20210424225350_changeUserData")]
+    partial class changeUserData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,22 +120,6 @@ namespace MindCology.Migrations
                     b.ToTable("Patient");
                 });
 
-            modelBuilder.Entity("MindCology.DAL.Entities.TherapistEntity", b =>
-                {
-                    b.HasBaseType("MindCology.DAL.Entities.UserEntity");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EducationLevel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Specialization")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Therapist");
-                });
-
             modelBuilder.Entity("MindCology.DAL.Entities.MedicalHistoryEntity", b =>
                 {
                     b.HasOne("MindCology.DAL.Entities.PatientEntity", "Patient")
@@ -150,15 +136,6 @@ namespace MindCology.Migrations
                     b.HasOne("MindCology.DAL.Entities.UserEntity", null)
                         .WithOne()
                         .HasForeignKey("MindCology.DAL.Entities.PatientEntity", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MindCology.DAL.Entities.TherapistEntity", b =>
-                {
-                    b.HasOne("MindCology.DAL.Entities.UserEntity", null)
-                        .WithOne()
-                        .HasForeignKey("MindCology.DAL.Entities.TherapistEntity", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });

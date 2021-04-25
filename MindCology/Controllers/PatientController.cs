@@ -1,23 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MindCology.DAL;
 using MindCology.DAL.Entities;
-using MindCology.ViewModels.User;
+using MindCology.ViewModels.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+namespace MindCology.Controllers { 
 
-namespace MindCology.Controllers
-{
+
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class PatientController : ControllerBase
     {
-
         private readonly MindCologyContext _mindCologyContext;
-        public UsersController (MindCologyContext mindCologyContext)
+        public PatientController (MindCologyContext mindCologyContext)
         {
             _mindCologyContext = mindCologyContext;
 
@@ -26,22 +25,23 @@ namespace MindCology.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            var entities = _mindCologyContext.User.ToList();
-            var ViewModels = new List<UserViewModel>();
+            var entities = _mindCologyContext.Patient.ToList();
+            var ViewModels = new List<PatientViewModel>();
 
             foreach (var entity in entities)
             {
-                ViewModels.Add(new UserViewModel()
+                ViewModels.Add(new PatientViewModel()
                 {
                     Id = entity.Id,
                     FirstName = entity.FirstName,
                     LastName = entity.LastName,
                     PhoneNumber = entity.PhoneNumber,
                     Username = entity.Username,
-                    Email=entity.Email,
-                    Age=entity.Age,
-                    Gender=entity.Gender,
-                    UserType=entity.UserType,
+                    Email = entity.Email,
+                    Age = entity.Age,
+                    Gender = entity.Gender,
+                    UserType = entity.UserType,
+                    FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
                 });
             }
 
@@ -53,12 +53,12 @@ namespace MindCology.Controllers
         public ActionResult Get(int id)
         {
 
-            var entity = _mindCologyContext.User.FirstOrDefault(x=>x.Id==id);
+            var entity = _mindCologyContext.Patient.FirstOrDefault(x=>x.Id==id);
             if (entity == null) {
                 return NotFound();
             }
 
-            var ViewModel = new UserViewModel()
+            var ViewModel = new PatientViewModel()
             {
                 Id = entity.Id,
                 FirstName = entity.FirstName,
@@ -69,30 +69,32 @@ namespace MindCology.Controllers
                 Age = entity.Age,
                 Gender = entity.Gender,
                 UserType = entity.UserType,
+                FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
             };
             return Ok(ViewModel);
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public UserViewModel Post([FromBody] UserModel user)
+        public PatientViewModel Post([FromBody] PatientModel user)
         {
-            var entity = new UserEntity() {
+            var entity = new PatientEntity() {
                 FirstName = user.FirstName,
-                LastName=user.LastName,
-                Password=user.Password,
-                PhoneNumber=user.PhoneNumber,
-                Username=user.Username,
-                 Email = user.Email,
+                LastName = user.LastName,
+                Password = user.Password,
+                PhoneNumber = user.PhoneNumber,
+                Username = user.Username,
+                Email = user.Email,
                 Age = user.Age,
                 Gender = user.Gender,
                 UserType = user.UserType,
+                FilledMedicalHistoryForm = user.FilledMedicalHistoryForm,
             };
 
-            _mindCologyContext.Add<UserEntity>(entity);
+            _mindCologyContext.Add<PatientEntity>(entity);
             _mindCologyContext.SaveChanges();
-            var ViewModel = new UserViewModel() { 
-                Id=entity.Id,
+            var ViewModel = new PatientViewModel() {
+                Id = entity.Id,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 PhoneNumber = entity.PhoneNumber,
@@ -101,6 +103,8 @@ namespace MindCology.Controllers
                 Age = entity.Age,
                 Gender = entity.Gender,
                 UserType = entity.UserType,
+                FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
+
 
             };
             return ViewModel;
@@ -108,9 +112,9 @@ namespace MindCology.Controllers
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] UserModel user)
+        public ActionResult Put(int id, [FromBody] PatientModel user)
         {
-            var entity = _mindCologyContext.User.FirstOrDefault(x => x.Id == id);
+            var entity = _mindCologyContext.Patient.FirstOrDefault(x => x.Id == id);
 
             if (entity==null) {
                 return NotFound();
@@ -125,12 +129,12 @@ namespace MindCology.Controllers
             entity.Age = user.Age;
             entity.Gender = user.Gender;
             entity.UserType = user.UserType;
+            entity.FilledMedicalHistoryForm = user.FilledMedicalHistoryForm;
 
 
-
-            _mindCologyContext.Update<UserEntity>(entity);
+            _mindCologyContext.Update<PatientEntity>(entity);
             _mindCologyContext.SaveChanges();
-            var ViewModel = new UserViewModel()
+            var ViewModel = new PatientViewModel()
             {
                 Id = entity.Id,
                 FirstName = entity.FirstName,
@@ -141,6 +145,7 @@ namespace MindCology.Controllers
                 Age = entity.Age,
                 Gender = entity.Gender,
                 UserType = entity.UserType,
+                FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
 
 
             };
@@ -151,12 +156,12 @@ namespace MindCology.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var entity = _mindCologyContext.User.FirstOrDefault(x => x.Id == id);
+            var entity = _mindCologyContext.Patient.FirstOrDefault(x => x.Id == id);
             if (entity == null)
             {
                 return NotFound();
             }
-            _mindCologyContext.User.Remove(entity);
+            _mindCologyContext.Patient.Remove(entity);
             _mindCologyContext.SaveChanges();
             return NoContent();
 

@@ -33,9 +33,7 @@ namespace MindCology.ViewModels.User
         [Required]
         public string Password { get; set; }
 
-        [Required]
-        public string FilledMedicalForm { get; set; }
-
+      
         [Required]
         public string UserType { get; set; }
 
