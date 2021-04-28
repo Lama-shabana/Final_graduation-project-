@@ -132,18 +132,70 @@ namespace MindCology.Controllers
                 return NotFound();
             }
 
-            entity.FirstName = user.FirstName;
-            entity.LastName = user.LastName;
-            entity.Password = user.Password;
-            entity.PhoneNumber = user.PhoneNumber;
-            entity.Username = user.Username;
-            entity.Email = user.Email;
-            entity.Age = user.Age;
-            entity.Gender = user.Gender;
-            entity.UserType = user.UserType;
-            entity.EducationLevel = user.EducationLevel;
-            entity.Specialization = user.Specialization;
-            entity.Description = user.Description;
+            if (user.FirstName != null)
+            {
+                entity.FirstName = user.FirstName;
+            }
+            if (user.LastName != null)
+            {
+                entity.LastName = user.LastName;
+            }
+
+            if (user.Password != null)
+            {
+                entity.Password = user.Password;
+            }
+
+            if (user.PhoneNumber != null)
+            {
+                entity.PhoneNumber = user.PhoneNumber;
+            }
+            if (user.Username != null)
+            {
+                entity.Username = user.Username;
+
+            }
+
+            if (user.Email != null)
+            {
+                entity.Email = user.Email;
+
+            }
+            if (user.Age != 0)
+            {
+                entity.Age = user.Age;
+
+            }
+            if (user.Gender != null)
+            {
+                entity.Gender = user.Gender;
+
+            }
+            if (user.UserType != null)
+            {
+                entity.UserType = user.UserType;
+
+            }
+            if (user.Specialization != null)
+            {
+                entity.Specialization = user.Specialization;
+
+            }
+            if (user.EducationLevel != null)
+            {
+                entity.EducationLevel = user.EducationLevel;
+
+            }
+            if (user.Description != null)
+            {
+                entity.Description = user.Description;
+
+            }
+
+
+
+
+
 
             _mindCologyContext.Update<TherapistEntity>(entity);
             _mindCologyContext.SaveChanges();

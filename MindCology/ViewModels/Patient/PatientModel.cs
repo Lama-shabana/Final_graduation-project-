@@ -10,7 +10,6 @@ namespace MindCology.ViewModels.Patient
     public class PatientModel:UserModel
     {
 
-        [Required]
         public bool FilledMedicalHistoryForm { get; set; }
         //public MedicalHistoryEntity MedicalHistory { get; set; }
     }
