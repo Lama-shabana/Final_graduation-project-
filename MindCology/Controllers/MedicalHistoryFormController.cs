@@ -84,7 +84,7 @@ namespace MindCology.DAL.Entities
         [HttpPost]
         public ActionResult Post([FromBody] MedicalHistoryModel user)
         {
-            var userExists = _mindCologyContext.User.Any(x => x.Id == user.PatientId);
+            var userExists = _mindCologyContext.Patient.Any(x => x.Id == user.PatientId);
             if (!userExists) {
                 return BadRequest("User not found");
             }
@@ -135,7 +135,7 @@ namespace MindCology.DAL.Entities
         public ActionResult Put(int id, [FromBody] MedicalHistoryModel user)
         {
 
-            var userExists = _mindCologyContext.User.Any(x => x.Id == user.PatientId);
+            var userExists = _mindCologyContext.Patient.Any(x => x.Id == user.PatientId);
             if (!userExists)
             {
                 return BadRequest("User not found");
