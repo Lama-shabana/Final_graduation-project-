@@ -44,7 +44,9 @@ namespace MindCology.Controllers
                     UserType = entity.UserType,
                     EducationLevel=entity.EducationLevel,
                     Specialization=entity.Specialization,
-                    Description=entity.Description
+                    Description=entity.Description,
+                    Active = entity.Active,
+
                 });
             }
 
@@ -75,7 +77,9 @@ namespace MindCology.Controllers
                 UserType = entity.UserType,
                 EducationLevel = entity.EducationLevel,
                 Specialization = entity.Specialization,
-                Description = entity.Description
+                Description = entity.Description,
+                Active = entity.Active,
+
             };
             return Ok(ViewModel);
         }
@@ -97,7 +101,9 @@ namespace MindCology.Controllers
                 UserType = user.UserType,
                 EducationLevel = user.EducationLevel,
                 Specialization = user.Specialization,
-                Description = user.Description
+                Description = user.Description,
+                Active = user.Active,
+
             };
 
             _mindCologyContext.Add<TherapistEntity>(entity);
@@ -115,7 +121,9 @@ namespace MindCology.Controllers
                 UserType = entity.UserType,
                 EducationLevel = entity.EducationLevel,
                 Specialization = entity.Specialization,
-                Description = entity.Description
+                Description = entity.Description,
+                Active = entity.Active,
+
 
             };
             return ViewModel;
@@ -195,6 +203,7 @@ namespace MindCology.Controllers
 
 
 
+            entity.Active = user.Active;
 
 
             _mindCologyContext.Update<TherapistEntity>(entity);
@@ -212,7 +221,9 @@ namespace MindCology.Controllers
                 UserType = entity.UserType,
                 EducationLevel = entity.EducationLevel,
                 Specialization = entity.Specialization,
-                Description = entity.Description
+                Description = entity.Description,
+                Active = entity.Active,
+
 
             };
             return Ok(ViewModel);

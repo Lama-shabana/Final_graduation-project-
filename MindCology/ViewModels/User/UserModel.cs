@@ -34,7 +34,7 @@ namespace MindCology.ViewModels.User
       
         public string UserType { get; set; }
 
-
+        public bool Active { get; set; }
 
 
 

@@ -26,6 +26,9 @@ namespace MindCology.DAL.Entities
 
         public int Age { get; set; }
 
+        public bool Active { get; set; }
+
+
 
 
 

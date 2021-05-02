@@ -42,6 +42,8 @@ namespace MindCology.Controllers {
                     Gender = entity.Gender,
                     UserType = entity.UserType,
                     FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
+                    Active = entity.Active,
+
                 });
             }
 
@@ -70,6 +72,8 @@ namespace MindCology.Controllers {
                 Gender = entity.Gender,
                 UserType = entity.UserType,
                 FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
+                Active = entity.Active,
+
             };
             return Ok(ViewModel);
         }
@@ -89,6 +93,8 @@ namespace MindCology.Controllers {
                 Gender = user.Gender,
                 UserType = user.UserType,
                 FilledMedicalHistoryForm = user.FilledMedicalHistoryForm,
+                Active = user.Active,
+
             };
 
             _mindCologyContext.Add<PatientEntity>(entity);
@@ -104,6 +110,8 @@ namespace MindCology.Controllers {
                 Gender = entity.Gender,
                 UserType = entity.UserType,
                 FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
+                Active = entity.Active,
+
 
 
             };
@@ -169,6 +177,7 @@ namespace MindCology.Controllers {
                 entity.FilledMedicalHistoryForm = user.FilledMedicalHistoryForm;
 
             }
+            entity.Active = user.Active;
 
 
             _mindCologyContext.Update<PatientEntity>(entity);
@@ -185,6 +194,8 @@ namespace MindCology.Controllers {
                 Gender = entity.Gender,
                 UserType = entity.UserType,
                 FilledMedicalHistoryForm = entity.FilledMedicalHistoryForm,
+                Active = entity.Active,
+
 
 
             };

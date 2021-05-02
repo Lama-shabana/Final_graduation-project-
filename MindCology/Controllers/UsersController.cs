@@ -42,6 +42,8 @@ namespace MindCology.Controllers
                     Age=entity.Age,
                     Gender=entity.Gender,
                     UserType=entity.UserType,
+                    Active = entity.Active,
+
                 });
             }
 
@@ -69,6 +71,8 @@ namespace MindCology.Controllers
                 Age = entity.Age,
                 Gender = entity.Gender,
                 UserType = entity.UserType,
+                Active = entity.Active,
+
             };
             return Ok(ViewModel);
         }
@@ -87,6 +91,8 @@ namespace MindCology.Controllers
                 Age = user.Age,
                 Gender = user.Gender,
                 UserType = user.UserType,
+                Active = user.Active,
+
             };
 
             _mindCologyContext.Add<UserEntity>(entity);
@@ -101,6 +107,8 @@ namespace MindCology.Controllers
                 Age = entity.Age,
                 Gender = entity.Gender,
                 UserType = entity.UserType,
+                Active = entity.Active,
+
 
             };
             return ViewModel;
@@ -160,6 +168,8 @@ namespace MindCology.Controllers
             }
 
 
+            entity.Active = user.Active;
+
 
             _mindCologyContext.Update<UserEntity>(entity);
             _mindCologyContext.SaveChanges();
@@ -174,6 +184,8 @@ namespace MindCology.Controllers
                 Age = entity.Age,
                 Gender = entity.Gender,
                 UserType = entity.UserType,
+                Active = entity.Active,
+
 
 
             };
