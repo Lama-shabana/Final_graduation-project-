@@ -54,7 +54,7 @@ namespace MindCology.DAL.Entities
         public ActionResult Get(int id)
         {
 
-            var entity = _mindCologyContext.MedicalHistory.FirstOrDefault(x => x.Id == id);
+            var entity = _mindCologyContext.MedicalHistory.FirstOrDefault(x => x.PatientId == id);
             if (entity == null)
             {
                 return NotFound();
