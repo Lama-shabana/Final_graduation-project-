@@ -45,6 +45,7 @@ namespace MindCology.Controllers
                     EducationLevel=entity.EducationLevel,
                     Specialization=entity.Specialization,
                     Description=entity.Description,
+                    ImagePath=entity.ImagePath,
                     Active = entity.Active,
 
                 });
@@ -78,6 +79,7 @@ namespace MindCology.Controllers
                 EducationLevel = entity.EducationLevel,
                 Specialization = entity.Specialization,
                 Description = entity.Description,
+                ImagePath = entity.ImagePath,
                 Active = entity.Active,
 
             };
@@ -102,6 +104,7 @@ namespace MindCology.Controllers
                 EducationLevel = user.EducationLevel,
                 Specialization = user.Specialization,
                 Description = user.Description,
+                ImagePath = user.ImagePath,
                 Active = user.Active,
 
             };
@@ -122,6 +125,7 @@ namespace MindCology.Controllers
                 EducationLevel = entity.EducationLevel,
                 Specialization = entity.Specialization,
                 Description = entity.Description,
+                ImagePath = entity.ImagePath,
                 Active = entity.Active,
 
 
@@ -199,6 +203,11 @@ namespace MindCology.Controllers
                 entity.Description = user.Description;
 
             }
+            if (user.ImagePath != null)
+            {
+                entity.ImagePath = user.ImagePath;
+
+            }
 
 
 
@@ -222,6 +231,7 @@ namespace MindCology.Controllers
                 EducationLevel = entity.EducationLevel,
                 Specialization = entity.Specialization,
                 Description = entity.Description,
+                ImagePath=entity.ImagePath,
                 Active = entity.Active,
 
 

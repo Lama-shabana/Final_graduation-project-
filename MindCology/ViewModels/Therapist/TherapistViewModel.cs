@@ -15,5 +15,6 @@ namespace MindCology.ViewModels.Therapist
 
         public string Description { get; set; }
 
+        public string ImagePath { get; set; }
     }
 }
