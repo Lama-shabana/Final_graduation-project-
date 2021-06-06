@@ -32,9 +32,14 @@ namespace MindCology.Controllers
                 ViewModels.Add(new AppointmentsViewModel()
                 {
                     Id = entity.Id,
-                    Date = entity.Date,
                     TherapistId = entity.TherapistId,
                     PatientId = entity.PatientId,
+
+                    MeetingID = entity.MeetingID,
+                    Password = entity.Password,
+                    Date = entity.Date,
+                    Time = entity.Time,
+
                 });
             }
 
@@ -46,7 +51,7 @@ namespace MindCology.Controllers
         public ActionResult Get(int id)
         {
 
-            var entity = _mindCologyContext.Appointments.FirstOrDefault(x => x.Id == id);
+            var entity = _mindCologyContext.Appointments.FirstOrDefault(x => x.MeetingID == id);
             if (entity == null)
             {
                 return NotFound();
@@ -55,9 +60,13 @@ namespace MindCology.Controllers
             var ViewModel = new AppointmentsViewModel()
             {
                 Id = entity.Id,
-                Date = entity.Date,
                 TherapistId = entity.TherapistId,
                 PatientId = entity.PatientId,
+
+                MeetingID = entity.MeetingID,
+                Password = entity.Password,
+                Date = entity.Date,
+                Time = entity.Time,
 
             };
             return Ok(ViewModel);
@@ -74,10 +83,12 @@ namespace MindCology.Controllers
             }
             var entity = new AppointmentEntity()
             {
-                Date = user.Date,
                 TherapistId = user.TherapistId,
                 PatientId = user.PatientId,
-
+                MeetingID = user.MeetingID,
+                Password = user.Password,
+                Date = user.Date,
+                Time = user.Time,
 
             };
 
@@ -86,10 +97,12 @@ namespace MindCology.Controllers
             var ViewModel = new AppointmentsViewModel()
             {
                 Id = entity.Id,
-                Date = entity.Date,
                 TherapistId = entity.TherapistId,
                 PatientId = entity.PatientId,
-
+                MeetingID = entity.MeetingID,
+                Password = entity.Password,
+                Date = entity.Date,
+                Time = entity.Time,
 
 
             };
@@ -114,10 +127,12 @@ namespace MindCology.Controllers
             }
 
         
-            entity.Date = user.Date;
             entity.TherapistId = user.TherapistId;
             entity.PatientId = user.PatientId;
-
+            entity.MeetingID = user.MeetingID;
+            entity.Password = user.Password;
+            entity.Date = user.Date;
+            entity.Time = user.Time;
 
 
 
@@ -126,7 +141,6 @@ namespace MindCology.Controllers
             var ViewModel = new AppointmentsViewModel()
             {
                 Id = entity.Id,
-                Date = entity.Date,
                 TherapistId = entity.TherapistId,
                 PatientId = entity.PatientId,
 
@@ -139,7 +153,7 @@ namespace MindCology.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var entity = _mindCologyContext.Appointments.FirstOrDefault(x => x.Id == id);
+            var entity = _mindCologyContext.Appointments.FirstOrDefault(x => x.MeetingID == id);
             if (entity == null)
             {
                 return NotFound();

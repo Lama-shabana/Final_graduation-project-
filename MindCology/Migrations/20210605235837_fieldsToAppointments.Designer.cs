@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MindCology.DAL;
 
 namespace MindCology.Migrations
 {
     [DbContext(typeof(MindCologyContext))]
-    partial class MindCologyContextModelSnapshot : ModelSnapshot
+    [Migration("20210605235837_fieldsToAppointments")]
+    partial class fieldsToAppointments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +30,8 @@ namespace MindCology.Migrations
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MeetingID")
-                        .HasColumnType("int");
+                    b.Property<string>("MeetingID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");

@@ -14,8 +14,6 @@ namespace MindCology.DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime Date { get; set; }
-
 
         public TherapistEntity Therapist { get; set; }
         public int TherapistId { get; set; }
@@ -23,6 +21,12 @@ namespace MindCology.DAL.Entities
         public PatientEntity Patient { get; set; }
         public int PatientId { get; set; }
 
+
+
+        public int MeetingID { get; set; }
+        public string Password { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
 
 
 
