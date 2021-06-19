@@ -9,16 +9,12 @@ namespace MindCology.ViewModels.Therapist
 {
     public class TherapistModel:UserModel
     {
-        [Required]
         public string EducationLevel { get; set; }
         
-        [Required]
         public string Specialization { get; set; }
         
-        [Required]
         public string Description { get; set; }
 
-        [Required]
         public string ImagePath { get; set; }
     }
 }
